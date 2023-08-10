@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import spms.dao.MemberDao;
 import spms.dto.MemberDto;
 
-@WebServlet("/member/membersignup")
+@WebServlet("/member/signup")
 public class MemberAddServlet extends HttpServlet {
 	
 	@Override

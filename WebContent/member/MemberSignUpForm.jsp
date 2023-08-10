@@ -285,7 +285,9 @@
 		}
 	}
 	
-	
+	function cancelButtonFnc() {
+		history.back();
+	}
 	</script>
 
 </head>
@@ -464,11 +466,11 @@
 		</span>	
 	
 		<div id="memberAddButton">
-			<input type="submit" value="회원가입">
+			<input type="submit" value="회원가입" onclick="">
 		</div>
 		
 		<div id="memberCancelButton">
-			<input type="button" value="취소">
+			<input type="button" value="취소" onclick="cancelButtonFnc();">
 		</div>
 	</div><!--buttonBox end-->
 	

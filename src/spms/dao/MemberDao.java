@@ -135,5 +135,20 @@ public class MemberDao {
 		
 		return resultNum;
 	}
+
+	public void memberDelete(int no) throws Exception {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public MemberDto memberSelectOne(int no) throws Exception {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public int memberUpdate(MemberDto memberDto) throws Exception {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	
 }
