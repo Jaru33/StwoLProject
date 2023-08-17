@@ -23,9 +23,9 @@
     <td align="center"><b><a href="https://github.com/shwan94">이승환</a></b></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://user-images.githubusercontent.com/136562675/261252133-5c97616f-d514-47a0-8b95-ed09b5e96391.jpg" width="100px" /></a></td>
-    <td align="center"><a href="https://github-production-user-asset-6210df.s3.amazonaws.com/136562675/261252040-3d814889-4aa6-4b82-a845-42f2ba54c03b.jpg" width="100px" /></a></td>
-    <td align="center"><a href="https://user-images.githubusercontent.com/136562675/261252107-ef3a5ba4-ccb5-482b-9591-551d003c4510.jpg" width="100px" /></a></td>
+    <td align="center"><img src="https://github.com/Jaru33/StwoLProject/assets/136562675/c3774a36-3acd-4e5a-95dc-f45905ec7c61" alt="jinwon" width="100px" /></td>
+    <td align="center"><img src="https://github.com/Jaru33/StwoLProject/assets/136562675/59005bc7-1eda-4743-86a2-10e64b27abc5" alt="jinwon" width="100px" /></td>
+    <td align="center"><img src="https://github.com/Jaru33/StwoLProject/assets/136562675/7e668631-cb2e-4762-b131-5654a5e0ea84" alt="jinwon" width="100px" /></td>
   </tr>
   <tr>
     <td align="center"><b>Backend</b></td>
