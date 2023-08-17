@@ -23,9 +23,9 @@
     <td align="center"><b><a href="https://github.com/shwan94">이승환</a></b></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/Jaru33"><img src="[https://user-images.githubusercontent.com/90495580/169259372-a923afea-a898-4bca-9504-7d073d6ffab8](https://github.com/Jaru33/StwoLProject/assets/136562675/a08c4255-851f-4a5e-bb00-55a77605f002).jpeg" width="100px" /></a></td>
-    <td align="center"><a href="https://github.com/111677"><img src="https://user-images.githubusercontent.com/90495580/169259379-a913dd30-fa7f-4309-af30-9bd94c9608a6.png" width="100px" /></a></td>
-    <td align="center"><a href="https://github.com/shwan94"><img src="https://user-images.githubusercontent.com/90495580/169259387-0e3b59ad-5882-458a-9a2b-2ccac2d696ae.png" width="100px" /></a></td>
+    <td align="center"><a href="https://user-images.githubusercontent.com/136562675/261252133-5c97616f-d514-47a0-8b95-ed09b5e96391.jpg" width="100px" /></a></td>
+    <td align="center"><a href="https://github-production-user-asset-6210df.s3.amazonaws.com/136562675/261252040-3d814889-4aa6-4b82-a845-42f2ba54c03b.jpg" width="100px" /></a></td>
+    <td align="center"><a href="https://user-images.githubusercontent.com/136562675/261252107-ef3a5ba4-ccb5-482b-9591-551d003c4510.jpg" width="100px" /></a></td>
   </tr>
   <tr>
     <td align="center"><b>Backend</b></td>
