@@ -1,12 +1,7 @@
 package spms.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
@@ -17,10 +12,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import spms.dao.MemberDao;
-import spms.dto.MemberDto;
+import spms.dao.BoardDao;
+import spms.dto.BoardDto;
 
-@WebServlet("/member/update")
+
+@WebServlet("/sampleBoard/update")
 public class BoardUpdateServlet extends HttpServlet {
 
 	@Override
@@ -28,27 +24,26 @@ public class BoardUpdateServlet extends HttpServlet {
 
 		Connection conn = null;
 
-		String mNo = "";
+		String bNo = "";
 		RequestDispatcher rd = null;
 
 		try {
-			mNo = req.getParameter("no");
-			int no = Integer.parseInt(mNo);
+			bNo = req.getParameter("no");
+			System.out.println("업데이트번호 오는지확인:"+bNo);
+			int no = Integer.parseInt(bNo);
 			ServletContext sc = this.getServletContext();
 
 			conn = (Connection) sc.getAttribute("conn");
 
-			MemberDao memberDao = new MemberDao();
-			memberDao.setConnection(conn);
+			BoardDao boardDao = new BoardDao();
+			boardDao.setConnection(conn);
 
-			MemberDto memberDto = memberDao.memberSelectOne(no);
-			req.setAttribute("memberDto", memberDto);
+			BoardDto boardDto = boardDao.boardSelectOne(no);
+			req.setAttribute("boardDto", boardDto);
 
-			rd = req.getRequestDispatcher("./MemberUpdateForm.jsp");
+			rd = req.getRequestDispatcher("/sampleBoard/BoardUpdateForm.jsp");
 			rd.forward(req, res);
 
-		} catch (SQLException e) {
-			e.printStackTrace();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,38 +57,41 @@ public class BoardUpdateServlet extends HttpServlet {
 	}// doget end
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) 
+			throws ServletException, IOException {
 
 //			req.setCharacterEncoding("UTF-8");
-		MemberDto memberDto = null;
 		Connection conn = null;
-
+		RequestDispatcher rd = null;
+		
+		String contents ="";
+		String title ="";
+		String bNo = "";
 		try {
-			String email = req.getParameter("email");
-			String name = req.getParameter("name");
-			String mNo = req.getParameter("no");
-			int no = Integer.parseInt(mNo);
-			
-			memberDto = new MemberDto();
-			memberDto.setEmail(email);
-			memberDto.setName(name);
-			memberDto.setNo(no);
-			
+			bNo = req.getParameter("no");
+			int no = Integer.parseInt(bNo);
+			contents = req.getParameter("contents");
+			title = req.getParameter("title");
 			ServletContext sc = this.getServletContext();
-
 			conn = (Connection) sc.getAttribute("conn");
-
-			MemberDao memberDao = new MemberDao();
-			memberDao.setConnection(conn);
 			
-			int result = memberDao.memberUpdate(memberDto);
+			BoardDao boardDao = new BoardDao();
+			boardDao.setConnection(conn);
 			
-			if(result == 0) {
-				System.out.println("회원 정보 조회가 실패했습니다.");
+			BoardDto boardDto = new BoardDto();
+			boardDto.setbNo(no);
+			boardDto.setbContents(contents);
+			boardDto.setcTitle(title);
+			
+			int resultNum = 0;
+			resultNum = boardDao.boardUpdate(boardDto);//resultNum 으로 반환됨 ( 유효성검사시활용할수있을까?)
+			
+			if(resultNum ==0) {
+				System.out.println("게시물수정실패");
+			} else if(resultNum ==1) {
+				System.out.println("게시물수정성공");
 			}
-			
 			res.sendRedirect("./list");
-
 		} catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("msg", e);

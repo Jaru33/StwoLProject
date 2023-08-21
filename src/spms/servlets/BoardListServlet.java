@@ -1,14 +1,7 @@
 package spms.servlets;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
@@ -19,39 +12,77 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import jdk.internal.org.objectweb.asm.commons.SerialVersionUIDAdder;
-import spms.dao.MemberDao;
-import spms.dto.MemberDto;
+import spms.dao.BoardDao;
+import spms.dto.BoardDto;
 
-@WebServlet("/member/list")
+
+
+@WebServlet("/sampleBoard/list")
 public class BoardListServlet extends HttpServlet{
 	
 	private static final long SerialVersionUID = 1L;
 	
 	@Override
 	protected void doGet(HttpServletRequest request, 
-			HttpServletResponse response) 
-			throws ServletException, IOException {
-		
+		HttpServletResponse response) 
+		throws ServletException, IOException {
 		Connection conn = null;
-	
 		try {
-			
 			ServletContext sc = this.getServletContext();
+			
 			
 			conn = (Connection)sc.getAttribute("conn");
 			
-			MemberDao memberDao = new MemberDao();
-			memberDao.setConnection(conn);
+			BoardDao boardDao = new BoardDao();
+			boardDao.setConnection(conn);
 			
-			ArrayList<MemberDto> memberList = null;
+			ArrayList<BoardDto> boardList = null;
 			
-			memberList = (ArrayList<MemberDto>)memberDao.selectList();
+			boardList = (ArrayList<BoardDto>)boardDao.selectList();
 			
-			request.setAttribute("memberList", memberList);
+			int showPageCnt = 5; //게시판 페이지당 보여질 게시물 수
+			int totalPages = (int)Math.ceil((double)boardList.size()/showPageCnt);//전체 페이지수
+			int currentPage = 1;//현재 페이지수
+			request.setAttribute("totalPages", totalPages);
+			request.setAttribute("boardList", boardList);
 			
+			if(request.getParameter("pno") == null ) {//초기값 
+				int pno = 0;
+				request.setAttribute("currentPage", currentPage);
+				request.setAttribute("bi", (pno*5)+0);
+				if(totalPages < 4) {
+					request.setAttribute("ei", totalPages);
+					request.setAttribute("endPagesNo", totalPages);
+				}else {
+					request.setAttribute("ei", (pno*5)+4);
+					request.setAttribute("endPagesNo", (pno*5)+4);
+				}
+				request.setAttribute("startPagesNo", (pno*5)+0);
+			} else {//페이지 번호를 받아오는경우
+				String pnoStr = request.getParameter("pno");
+				int pno = Integer.parseInt(pnoStr);
+				currentPage = pno;
+				request.setAttribute("currentPage", currentPage);
+				//해당 페이지별 출력할 게시물 인덱스번호 지정
+				request.setAttribute("bi", ((pno)*5)+0);//c:foreach begin값
+				//c:foreach end값
+				request.setAttribute("ei", (pno*5)+4);
+				if(totalPages < 4) {
+					request.setAttribute("endPagesNo", totalPages);
+				}else {
+					request.setAttribute("endPagesNo", (pno*5)+4);
+				}
+				int pages = (int)(pno/5);//페이지 번호 부여하기(5개씩출력)
+				request.setAttribute("startPagesNo", (pages*5)+0);//페이지번호 begin값
+				if((pages*5+4) > totalPages) {//페이지번호 end값
+					request.setAttribute("endPagesNo", totalPages);
+				}else {
+					request.setAttribute("endPagesNo", totalPages);
+				}
+				
+			}
 			RequestDispatcher dispatcher = 
-					request.getRequestDispatcher("/member/MemberListView.jsp");
+					request.getRequestDispatcher("/sampleBoard/BoardListView.jsp");
 			//인클루딩
 			dispatcher.forward(request, response);
 			
@@ -67,13 +98,16 @@ public class BoardListServlet extends HttpServlet{
 			//포워딩
 			dispatcher.forward(request, response);
 		}
+		
+		
 	}//doget 끝
 	
 	@Override
 	protected void doPost(HttpServletRequest req, 
 			HttpServletResponse resp) 
 			throws ServletException, IOException {
-		
+			
+			
 	}
 	
 

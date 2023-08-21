@@ -2,9 +2,6 @@ package spms.servlets;
 
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -14,9 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import spms.dao.MemberDao;
-import spms.dto.MemberDto;
-@WebServlet("/member/delete")
+import spms.dao.BoardDao;
+@WebServlet("/sampleBoard/delete")
 public class BoardDeleteServlet extends HttpServlet{
 
 	@Override
@@ -33,9 +29,9 @@ public class BoardDeleteServlet extends HttpServlet{
 			ServletContext sc = this.getServletContext();
 			
 			conn = (Connection)sc.getAttribute("conn");
-			MemberDao memberDao = new MemberDao();
-			memberDao.setConnection(conn);
-			memberDao.memberDelete(no);
+			BoardDao boardDao = new BoardDao();
+			boardDao.setConnection(conn);
+			boardDao.boardDelete(no);
 			
 			res.sendRedirect("./list");
 		

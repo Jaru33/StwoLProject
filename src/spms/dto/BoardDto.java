@@ -6,7 +6,7 @@ public class BoardDto {
 	
 	private int bNo;
 	private int no;
-	private String name;
+	private String id;
 	private String cTitle;
 	private String bContents;
 	private Date bCreateDate;
@@ -16,6 +16,32 @@ public class BoardDto {
 	
 	public BoardDto() {
 		super();
+	}
+	
+	public BoardDto(String id, String cTitle, String bContents) {
+		super();
+		this.id = id;
+		this.cTitle = cTitle;
+		this.bContents = bContents;
+	}
+
+	public BoardDto(int no, String id, String cTitle, String bContents) {
+		super();
+		this.no = no;
+		this.id = id;
+		this.cTitle = cTitle;
+		this.bContents = bContents;
+	}
+
+	public BoardDto(int bNo, int no, String cTitle, String id, Date bModifiedDate, int bViewsNo, int bReplyNo) {
+		super();
+		this.bNo = bNo;
+		this.no = no;
+		this.id = id;
+		this.cTitle = cTitle;
+		this.bModifiedDate = bModifiedDate;
+		this.bViewsNo = bViewsNo;
+		this.bReplyNo = bReplyNo;
 	}
 
 	public int getbNo() {
@@ -34,12 +60,12 @@ public class BoardDto {
 		this.no = no;
 	}
 
-	public String getName() {
-		return name;
+	public String getId() {
+		return id;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getcTitle() {
@@ -93,7 +119,7 @@ public class BoardDto {
 	
 	@Override
 	public String toString() {
-		return "MemberDto [bNo=" + bNo + ", no=" + no + ", name=" + name + ", cTitle=" + cTitle + ", bContents="
+		return "MemberDto [bNo=" + bNo + ", no=" + no + ", id=" + id + ", cTitle=" + cTitle + ", bContents="
 				+ bContents + ", bCreateDate=" + bCreateDate + ", bModifiedDate=" + bModifiedDate + ", bViewsNo="
 				+ bViewsNo + ", bReplyNo=" + bReplyNo + "]";
 	}
